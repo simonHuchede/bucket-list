@@ -1,0 +1,1 @@
+alert("Mentions Légales")

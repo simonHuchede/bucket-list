@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    {{ parent() }} | List
+{% endblock %}
+
+{% block body %}
+<h1>Liste : </h1>
+    <ul>
+        {% for valeur in list %}
+            <li>
+                <a href="{{ path('wish_detail', {'souhait': valeur.id}) }}">{{ valeur.title }} /{{ valeur.category.name }}</a>
+                <a href="{{ path('wish_supprimer', {'souhait': valeur.id}) }}"><img src="{{ asset('img/poubelle.png') }}" alt="logo poubelle"></a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

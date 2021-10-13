@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="img/favicon.png"/>
+        <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <title>
+
+            {% block title %}bucket-list{% endblock %}
+        </title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+    </head>
+
+    <body>
+    <header>
+        <div id="titre">
+            <h1><img src="{{ asset('img/logo.png') }}" alt="logo" >Bucket-list</h1>
+        </div>
+        <nav>
+            <a href="{{ path('main_home') }}">HOME</a>
+            <a href="{{ path('main_about_us') }}">ABOUT US</a>
+            <a href="{{ path('wish_list') }}">LIST</a>
+            {% if app.user %}
+                <a href="{{ path('wish_form') }}">ADD YOUR IDEA</a>
+            {% endif %}
+            <a href="{{ path('category_ajouter') }}">CATEGORY</a>
+            {% if not app.user %}
+                <a href="{{ path('app_register') }}">S'INSCRIRE</a>
+                <a href="{{ path('app_login') }}">LOGIN</a>
+            {% endif %}
+            {% if app.user %}
+
+                <a href="{{ path('app_logout') }}">LOGOUT </a><br>
+                Hello ({{ app.user.pseudo }})
+            {% endif %}
+        </nav>
+        <div>
+            {% block header %}{% endblock %}
+        </div>
+    </header>
+    <div id="corps">
+        {% block body %}{% endblock %}
+        <script>
+
+        </script>
+    </div>
+        <footer>
+            <div>
+                <a href="{{ path('main/legal_stuff') }}">Mentions légales</a>  &copy;Bucket-list {{ 'now'|date('Y') }}
+            </div>
+        </footer>
+    </body>
+
+
+</html>

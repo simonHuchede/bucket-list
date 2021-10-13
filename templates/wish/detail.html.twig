@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} | Details
+{% endblock %}
+
+{% block body %}
+<h1>Détails</h1>
+    <h2> {{ souhait.title  }} :  </h2>
+    <p>{{ souhait.description }}</p>
+    <p>{{ souhait.author }}</p>
+    <p>{{ souhait.dateCreated | date('d/m/Y')}}</p>
+    <p>{{ souhait.category.name }}</p>
+
+{% endblock %}
